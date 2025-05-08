@@ -17,7 +17,6 @@ class ObjectDetection:
             y1 = y_result - h // 2
             y2 = y_result + h // 2
 
-            # 邊界檢查
             x1 = max(0, x1)
             y1 = max(0, y1)
             x2 = min(img.shape[1], x2)
@@ -50,13 +49,11 @@ class ObjectDetection:
         img = cv2.imread(img_path)
         result = self.model.predict(source=img_path)
 
-        # 提取框框結果
         boxes = result[0].boxes
 
-        # 裁剪並儲存圖像
         cropped_images = self._crop_and_save(img, boxes, img_name_no_ext)
-
-        # 儲存標註圖像
-        self._annotate_and_save(img, boxes, img_name_no_ext)
+        
+        #不儲存yolo圈出來的結果
+        #self._annotate_and_save(img, boxes, img_name_no_ext)
 
         return cropped_images 
