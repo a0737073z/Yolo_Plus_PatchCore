@@ -3,7 +3,7 @@ import cv2
 from ultralytics import YOLO
 
 class ObjectDetection:
-    def __init__(self, yolo_model_path: str, output_dir: str = "output"):
+    def __init__(self, yolo_model_path: str, output_dir: str):
         self.model = YOLO(yolo_model_path)
         self.output_dir = os.path.abspath(output_dir)
         os.makedirs(self.output_dir, exist_ok=True)
@@ -53,7 +53,7 @@ class ObjectDetection:
 
         cropped_images = self._crop_and_save(img, boxes, img_name_no_ext)
         
-        #不儲存yolo圈出來的結果
+        #不儲存Yolo框出來的結果
         #self._annotate_and_save(img, boxes, img_name_no_ext)
 
         return cropped_images 

@@ -166,22 +166,21 @@ class AnomalyModel(pl.LightningModule):
                 cv2.imwrite(os.path.join(save_dir, f'{i}_{os.path.basename(name)}_amap_on_img.jpg'), amap_on_img)
 
 # 執行推論
-if __name__ == '__main__':
-    dataset_path = r'C:\Users\user\Desktop\0424\patchcore_13_V2\test\1_scratch' 
-    output_path = r'C:\Users\user\Desktop\0424\patchcore_result\12_1024_0.05'
-    checkpoint_path = os.path.join(output_path, 'lightning_logs', 'version_0', 'checkpoints', 'epoch=0-step=12.ckpt')
+# if __name__ == '__main__':
+#     dataset_path = r'C:\Users\user\Desktop\0424\patchcore_13_V2\test\1_scratch' 
+#     output_path = r'C:\Users\user\Desktop\0424\patchcore_result\12_1024_0.05'
+#     checkpoint_path = os.path.join(output_path, 'lightning_logs', 'version_0', 'checkpoints', 'epoch=0-step=12.ckpt')
 
-    model = AnomalyModel(
-        dataset_path=dataset_path,
-        output_path=output_path,
-        input_size=1024,
-        n_neighbors=9,
+#     model = AnomalyModel(
+#         dataset_path=dataset_path,
+#         output_path=output_path,
+#         input_size=1024,
+#         n_neighbors=9,
 
 
-        save_anomaly_map=True
-    )
-    model = AnomalyModel.load_from_checkpoint(checkpoint_path, dataset_path=dataset_path, output_path=output_path)
+#         save_anomaly_map=True
+#     )
+#     model = AnomalyModel.load_from_checkpoint(checkpoint_path, dataset_path=dataset_path, output_path=output_path)
 
-    trainer = pl.Trainer(accelerator='gpu' if torch.cuda.is_available() else 'cpu', devices=1)
-    trainer.test(model)
-
+#     trainer = pl.Trainer(accelerator='gpu' if torch.cuda.is_available() else 'cpu', devices=1)
+#     trainer.test(model)
